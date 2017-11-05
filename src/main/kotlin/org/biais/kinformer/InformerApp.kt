@@ -15,8 +15,13 @@ import kotlinx.html.* // ktlint-disable no-wildcard-imports
 fun Double.format(digits: Int) = java.lang.String.format("%.${digits}f", this)
 
 fun Application.main() {
+    // Init and start the Crawler
+    val crawler = Crawler()
+    crawler.startCrawlerLoop()
+
     install(DefaultHeaders)
     install(CallLogging)
+
     routing {
         get("/") {
             val title = "BTC/ETH Informer"
