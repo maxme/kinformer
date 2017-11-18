@@ -27,6 +27,7 @@ repositories {
     jcenter()
     maven { url "http://dl.bintray.com/kotlin/ktor" }
     maven { url "https://dl.bintray.com/kotlin/kotlinx" }
+    maven { url "https://dl.bintray.com/kotlin/exposed" }
 }
 
 dependencies {
@@ -50,6 +51,10 @@ dependencies {
 
     // Klaxon (JSON parser)
     compile 'com.beust:klaxon:0.30'
+
+    // Exposed - SQL library
+    compile 'org.jetbrains.exposed:exposed:0.8.7'
+    compile 'org.xerial:sqlite-jdbc:3.20.0'
 
     // Ktlint
     ktlint "com.github.shyiko:ktlint:0.11.1"

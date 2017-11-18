@@ -11,20 +11,51 @@ import io.ktor.html.respondHtml
 import io.ktor.routing.get
 import io.ktor.routing.routing
 import kotlinx.html.* // ktlint-disable no-wildcard-imports
+import org.slf4j.LoggerFactory
+import java.time.LocalDateTime
+import java.util.*
 
 fun Double.format(digits: Int) = java.lang.String.format("%.${digits}f", this)
 
+data class CachedItem(val expirationDate: LocalDateTime, val data : Any)
+
+fun getCachedItem(cache: HashMap<String, CachedItem>, key: String, getData : () -> Any) : Any {
+    val current = LocalDateTime.now()
+    if (cache.containsKey(key)) {
+        LoggerFactory.getLogger("Cache").debug(cache[key].toString())
+        if (cache[key]?.expirationDate?.isAfter(current) == true) {
+            LoggerFactory.getLogger("Cache").debug("Cache hit")
+            return cache[key]?.data ?: getData()
+        } else {
+            // Expire cached item
+            LoggerFactory.getLogger("Cache").debug("Cache expired")
+            cache.remove(key)
+        }
+    }
+    LoggerFactory.getLogger("Cache").debug("Calling getData()")
+    val res = getData()
+    cache[key] = CachedItem(current.plusSeconds(120), res)
+    return res
+}
+
 fun Application.main() {
+    // Init and start the Crawler
+    val crawler = Crawler()
+    crawler.startCrawlerLoop()
+
+    val cache = HashMap<String, CachedItem>()
+
     install(DefaultHeaders)
     install(CallLogging)
+
     routing {
         get("/") {
             val title = "BTC/ETH Informer"
-            val tickers = getAllTickers()
+            val tickers = getCachedItem(cache, "tickers", ::getAllTickers) as AllTickers
             call.respondHtml {
                 head {
 		    meta("viewport", "width=device-width; initial-scale=1.0;")
-                    link("static/style.css", "stylesheet", "text/css")
+                    link("static/style.css", "stylesheet")
                     title { +title }
                 }
                 body {
