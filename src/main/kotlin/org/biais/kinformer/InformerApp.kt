@@ -23,7 +23,8 @@ fun Application.main() {
             val tickers = getAllTickers()
             call.respondHtml {
                 head {
-                    link("static/style.css", "stylesheet")
+		    meta("viewport", "width=device-width; initial-scale=1.0;")
+                    link("static/style.css", "stylesheet", "text/css")
                     title { +title }
                 }
                 body {
