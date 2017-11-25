@@ -8,7 +8,6 @@ import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 import org.slf4j.LoggerFactory
 
-
 data class AllTickers(val etheur: Double, val btceur: Double, val btceth: Double)
 
 fun getTickerFromBitstamp(code: String): Double {

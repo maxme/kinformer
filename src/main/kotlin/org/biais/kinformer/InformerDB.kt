@@ -5,7 +5,7 @@ import org.jetbrains.exposed.sql.Database
 import org.slf4j.LoggerFactory
 
 class InformerDB {
-    object CurrencyPair: IntIdTable() {
+    object CurrencyPair : IntIdTable() {
         val name = varchar("name", 50)
     }
 

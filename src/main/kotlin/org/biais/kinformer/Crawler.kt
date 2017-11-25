@@ -4,7 +4,6 @@ import org.slf4j.LoggerFactory
 import java.time.LocalTime
 import kotlin.concurrent.thread
 
-
 class Crawler {
     private val updateTimeMs = 60000
 
@@ -22,7 +21,7 @@ class Crawler {
         }
     }
 
-    private fun crawl(db : InformerDB) {
+    private fun crawl(db: InformerDB) {
         LoggerFactory.getLogger("Crawler").debug("Crawler run")
     }
 }
