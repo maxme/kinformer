@@ -71,7 +71,7 @@ fun Application.main() {
                 }
             }
         }
-        static("static") {
+        static("/static") {
             files("src/main/resources/")
         }
     }
