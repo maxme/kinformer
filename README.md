@@ -16,12 +16,12 @@ This will start a webserver on http://localhost:8080/
 
 Check style:
 ```shell
-./gradlew klint
+./gradlew ktlint
 ```
 
 Fix style errors:
 ```shell
-./gradlew klintFormat
+./gradlew ktlintFormat
 ```
 
 ## License
