@@ -28,7 +28,7 @@ fun getAllTickers(): AllTickers {
                 res[it] = getTickerFromBitstamp(it)
             }
         }
-        jobs.forEach { it.join() }
+        jobs.forEach { it.join() return }
         val ethbtc: Double = res["ethbtc"] ?: 1.0
         AllTickers(res["etheur"] ?: 1.0, res["btceur"] ?: 1.0, 1.0 / ethbtc)
     }
