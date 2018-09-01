@@ -26,7 +26,6 @@ class Crawler {
         }
     }
 
-
     private fun crawl(db: InformerDB) {
         LoggerFactory.getLogger("Crawler").debug("Crawler run")
         db.connect()
@@ -40,7 +39,6 @@ class Crawler {
                     currPair = resQuery.first()
                 } else {
                     currPair = InformerDB.CurrencyPair.new { name = ticker }
-
                 }
                 val v = getTickerFromBitstamp(ticker)
                 InformerDB.Tick.new {

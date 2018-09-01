@@ -3,7 +3,7 @@ package org.biais.kinformer
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
-import io.ktor.content.files
+import io.ktor.content.file
 import io.ktor.content.static
 import io.ktor.features.CallLogging
 import io.ktor.features.DefaultHeaders
@@ -54,7 +54,7 @@ fun Application.main() {
             call.respondHtml {
                 head {
                     meta("viewport", "width=device-width; initial-scale=1.0;")
-                    link("static/style.css", "stylesheet")
+                    link("/btc-style.css", "stylesheet")
                     title { +title }
                 }
                 body {
@@ -71,8 +71,8 @@ fun Application.main() {
                 }
             }
         }
-        static("static") {
-            files("src/main/resources/")
+        static("/style.css") {
+            file("src/main/resources/style.css")
         }
     }
 }
