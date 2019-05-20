@@ -4,8 +4,8 @@ import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.beust.klaxon.string
 import com.github.kittinunf.fuel.Fuel
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.slf4j.LoggerFactory
 
 data class AllTickers(val etheur: Double, val btceur: Double, val btceth: Double)
@@ -19,7 +19,7 @@ fun getTickerFromBitstamp(code: String): Double {
 }
 
 fun getAllTickers(): AllTickers {
-    return runBlocking {
+    return runBlocking() {
         // List of all supported tickers
         val tickers = listOf("etheur", "btceur", "ethbtc")
         val res = mutableMapOf<String, Double>()

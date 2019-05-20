@@ -1,6 +1,5 @@
 package org.biais.kinformer
 
-import org.biais.kinformer.InformerDB.CurrencyPair.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.joda.time.DateTime
 import org.slf4j.LoggerFactory
